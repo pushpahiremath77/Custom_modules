@@ -1,0 +1,19 @@
+---
+- name: MySQL Dump and Restore Playbook
+  hosts: db_servers
+  tasks:
+    - name: Dump the database to file
+      dump_mysql:
+        user: "*****"
+        password: "*********"
+        database: "*******"
+        dump_file: "/tmp/pushpadb_dump.sql"
+        action: "dump"
+
+    - name: Restore the database from dump
+      dump_mysql:
+        user: "*******"
+        password: "*******"
+        database: "*******"
+        dump_file: "/tmp/pushpadb_dump.sql"
+        action: "restore"

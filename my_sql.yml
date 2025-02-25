@@ -1,0 +1,25 @@
+---
+- name: Install MySQl and create use
+  hosts: db_servers
+  become: yes
+  tasks:
+
+    - name: Install MySQL using custom module
+      my_module:
+        action: install
+
+    - name: Start MySQL server
+      my_module:
+        action: start
+
+    - name: Create a MySQL user
+      my_module:
+        action: create_user
+        user: "********"
+        password: "********"
+      register: output
+
+    - name: Displaying status
+      debug:
+        msg: "{{output.msg}}"
+

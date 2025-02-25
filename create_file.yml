@@ -1,0 +1,8 @@
+---
+- name: Create file
+  hosts: db_servers
+  become: yes
+  tasks:
+    - name: Create file if not present
+      create_file:
+        path: '/pushpa.txt'

@@ -1,0 +1,11 @@
+---
+- name: Test Custom Module
+  hosts: web_servers
+  tasks:
+    - name: Check if file exists
+      check_file:
+        path: "/tmp/testfile.txt"
+      register: result
+
+    - debug:
+        msg: "File exists: {{ result.file_exists }}"

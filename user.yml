@@ -1,0 +1,29 @@
+---
+- name: Install MySQL on remote servers
+  hosts: db_servers
+  become: yes
+  tasks:
+    - name: Install MySQL server
+      install_mysql:
+
+    - name: Configure my.cnf for bind_address and max_connections
+      configure_mysql:
+        bind_address: 0.0.0.0/0
+        max_connections: 100
+
+    - name: Create user and grant all priveleges
+      create_db_user:
+        username: "*****"
+        password: "*******"
+        db_name: "******"
+        root_password: "********"
+
+    - name: Create user
+      test_module:
+        username: abcd
+        state: present
+
+    - name: Delete user
+      test_module:
+        username: abcd
+        state: absent

@@ -1,0 +1,8 @@
+---
+- name: Create csv file
+  hosts: db_servers
+  become: yes
+  tasks:
+    - name: Facts to csv
+      create_csv:
+        device_facts:
